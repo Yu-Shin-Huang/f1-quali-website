@@ -1,4 +1,4 @@
-# Qualifying Notebook
+# F1 Qualifying Forecast
 
 Published Formula 1 qualifying forecasts and race reviews.
 
