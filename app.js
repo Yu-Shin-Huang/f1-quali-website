@@ -18,7 +18,7 @@ const teams={
 const lap=s=>{if(!s)return '—';const ms=Math.round(Number(s)*1000);return `${Math.floor(ms/60000)}:${((ms%60000)/1000).toFixed(3).padStart(6,'0')}`};
 let data,selectedId;
 const stage=s=>s.includes('post_friday')?'Post-practice':s.endsWith('_a')?'Pre-weekend · Model A':s.endsWith('_c')?'Pre-weekend · Model C (shadow)':'Pre-weekend · Model B';
-function groups(){const map=new Map();for(const row of data.predictions){if(!map.has(row.prediction_id))map.set(row.prediction_id,[]);map.get(row.prediction_id).push(row)}return [...map.values()].sort((a,b)=>b[0].created_at.localeCompare(a[0].created_at))}
+function groups(){const map=new Map();for(const row of data.predictions){if(row.circuit!==data.current_race.circuit||row.season!==data.current_race.season)continue;if(!map.has(row.prediction_id))map.set(row.prediction_id,[]);map.get(row.prediction_id).push(row)}return [...map.values()].sort((a,b)=>b[0].created_at.localeCompare(a[0].created_at))}
 function card(r){return `<a class="report-card" href="#report/${r.slug}"><span class="eyebrow">${esc(r.season)} SEASON · ${r.kind==='estimate'?'ESTIMATE':'REVIEW'}</span><h2>${esc(r.circuit)} Grand Prix</h2><p>${r.kind==='estimate'?'Our pre-weekend A/B/C forecasts and the evidence behind them.':'The saved forecast, the official result, and what we learned.'}</p><span class="text-link">Read the race report</span></a>`}
 function inputsPanel(meta){
   const detail=data.forecast_inputs?.[meta.prediction_id];
