@@ -1,7 +1,20 @@
 const main=document.querySelector('main');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const names={Kimi:'Kimi Antonelli',George:'George Russell',Max:'Max Verstappen',Lando:'Lando Norris',Hamilton:'Lewis Hamilton',Charles:'Charles Leclerc',Isack:'Isack Hadjar',Arvid:'Arvid Lindblad',Piastri:'Oscar Piastri',Liam:'Liam Lawson',Nico:'Nico Hülkenberg',Pierre:'Pierre Gasly',Franco:'Franco Colapinto',Gabriel:'Gabriel Bortoleto',Camara:'Rafael Câmara',Oliver:'Oliver Bearman',Carlos:'Carlos Sainz',Alex:'Alex Albon',Fernando:'Fernando Alonso',Lance:'Lance Stroll',Sergio:'Sergio Pérez',Valtteri:'Valtteri Bottas',Esteban:'Esteban Ocon',Ryo:'Ryo Hirakawa'};
-const teams={Kimi:'#60d9cb',George:'#60d9cb',Max:'#6f9dff',Isack:'#6f9dff',Lando:'#ff9c42',Piastri:'#ff9c42',Hamilton:'#ff626e',Charles:'#ff626e'};
+const names={Kimi:'Kimi Antonelli',George:'George Russell',Max:'Max Verstappen',Lando:'Lando Norris',Hamilton:'Lewis Hamilton',Charles:'Charles Leclerc',Isack:'Isack Hadjar',Arvid:'Arvid Lindblad',Piastri:'Oscar Piastri',Liam:'Liam Lawson',Nico:'Nico Hülkenberg',Pierre:'Pierre Gasly',Franco:'Franco Colapinto',Gabriel:'Gabriel Bortoleto',Camara:'Rafael Câmara',Oliver:'Oliver Bearman',Carlos:'Carlos Sainz',Alex:'Alex Albon',Fernando:'Fernando Alonso',Lance:'Lance Stroll',Sergio:'Sergio Pérez',Valtteri:'Valtteri Bottas',Esteban:'Esteban Ocon',Ryo:'Ryo Hirakawa',Yuki:'Yuki Tsunoda'};
+// Shared display colors for every team, including replacement drivers.
+const teams={
+  Kimi:'#60d9cb',George:'#60d9cb',                         // Mercedes
+  Max:'#6f9dff',Isack:'#6f9dff',Yuki:'#6f9dff',                          // Red Bull Racing
+  Lando:'#ff9c42',Piastri:'#ff9c42',                      // McLaren
+  Hamilton:'#ff626e',Charles:'#ff626e',                   // Ferrari
+  Liam:'#a3b7ff',Arvid:'#a3b7ff',                         // Racing Bulls
+  Pierre:'#f282b4',Franco:'#f282b4',                      // Alpine
+  Nico:'#f04b35',Gabriel:'#f04b35',                       // Audi
+  Oliver:'#e6e9ec',Esteban:'#e6e9ec',Camara:'#e6e9ec',Ryo:'#e6e9ec', // Haas
+  Carlos:'#338cff',Alex:'#338cff',                        // Williams
+  Fernando:'#229e83',Lance:'#229e83',                     // Aston Martin
+  Sergio:'#b6a68a',Valtteri:'#b6a68a'                      // Cadillac
+};
 const lap=s=>{if(!s)return '—';const ms=Math.round(Number(s)*1000);return `${Math.floor(ms/60000)}:${((ms%60000)/1000).toFixed(3).padStart(6,'0')}`};
 let data,selectedId;
 const stage=s=>s.includes('post_friday')?'Post-practice':s.endsWith('_a')?'Pre-weekend · Model A':'Pre-weekend · Model B';
